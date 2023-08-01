@@ -22,7 +22,7 @@ https://github.com/kamranahmedse/design-patterns-for-humans
 
 - Prototype (Прототип)
 <blockquote>
-  <p></p>
+  <p>Создание объекта на основе существующего объекта путем клонирования.</p>
 </blockquote>
 
 - Singleton (Одиночка)
