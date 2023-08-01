@@ -27,7 +27,7 @@ https://github.com/kamranahmedse/design-patterns-for-humans
 
 - Singleton (Одиночка)
 <blockquote>
-  <p></p>
+  <p>Гарантирует, что когда-либо будет создан только один объект определенного класса.</p>
 </blockquote>
 
 # Structural Design Patterns (Структурные)
