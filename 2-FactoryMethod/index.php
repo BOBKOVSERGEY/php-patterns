@@ -1,45 +1,57 @@
 <?php
 
-interface Door
+namespace FactoryMethod;
+interface Interviewer
 {
-    public function getWidth(): float;
-    public function getHeight(): float;
+    public function askQuestions();
 }
 
-
-class WoodenDoor implements Door
+class Developer implements Interviewer
 {
-    protected float $width;
-    protected float $height;
-
-    public function __construct(
-        float $width,
-        float $height
-    )
+    public function askQuestions()
     {
-        $this->width = $width;
-        $this->height = $height;
-    }
-
-    public function getWidth(): float
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): float
-    {
-        return $this->height;
+        echo 'Asking about design patterns!';
     }
 }
 
-class DoorFactory
+class CommunityExecutive implements Interviewer
 {
-    public static function makeDoor($width, $height): WoodenDoor
+    public function askQuestions()
     {
-        return new WoodenDoor($width, $height);
+        echo 'Asking about community building';
     }
 }
 
-$door = DoorFactory::makeDoor(90, 270);
-echo $door->getWidth();
-echo $door->getHeight();
+abstract class HiringManager
+{
+    abstract protected function makeInterviewer(): Interviewer;
+
+    public function takeInterview(): void
+    {
+        $interviewer = $this->makeInterviewer();
+        $interviewer->askQuestions();
+    }
+}
+
+class DevelopmentManager extends HiringManager
+{
+
+    protected function makeInterviewer(): Interviewer
+    {
+        return new Developer();
+    }
+}
+
+class MarketingManager extends HiringManager
+{
+    protected function makeInterviewer(): Interviewer
+    {
+        return new CommunityExecutive();
+    }
+}
+
+$devManager = new DevelopmentManager();
+$devManager->takeInterview();
+
+$marketingManager = new MarketingManager();
+$marketingManager->takeInterview();
